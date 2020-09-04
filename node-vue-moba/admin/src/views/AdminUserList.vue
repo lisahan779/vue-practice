@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       items: [],
-      pageSizes: 3, //每页展示数据
+      pageSizes: 10, //每页展示数据
       totalCount: 30, //总数
       currentPage3: 1, //默认显示第几页
     };
@@ -47,7 +47,6 @@ export default {
       });
       this.items = res.data.all;
       this.totalCount=res.data.count
-      console.log(this.totalCount)
     },
     remove(row) {
       this.$confirm(`是否确定要删除 "${row.name}"`, "提示", {
@@ -55,7 +54,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       }).then(async () => {
-        const res = await this.$http.delete(`rest/admin_users/${row._id}`);
+        await this.$http.delete(`rest/admin_users/${row._id}`);
         this.$message({
           type: "success",
           message: "删除成功!",

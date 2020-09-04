@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
   title: { type: String }, //标题
   body: { type: String },  //内容
 }, { 
-  timestamps: true
+  timestamps: true   //时间戳
 })
 
 module.exports = mongoose.model('Article', schema)

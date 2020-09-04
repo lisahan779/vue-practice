@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get(`heroes/${this.id}`);
+      // const res = await this.$http.get(`heroes/${this.id}`);
       this.model = res.data;
     }
   },

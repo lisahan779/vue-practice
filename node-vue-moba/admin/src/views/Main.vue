@@ -1,4 +1,5 @@
 <template>
+
   <el-container style="height: 100vh;">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <!-- unique-opened一次展开一个 :default-active="$route.path"根据路径高亮显示   :default-openeds="['3']"默认展开第三个列表-->
@@ -62,13 +63,13 @@
             <el-dropdown-item>新增</el-dropdown-item>
             <el-dropdown-item>删除</el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown>  
+        </el-dropdown>
+
         <span>王小虎</span>
       </el-header>
-     
       <el-main>
+        <!-- :key="$route.path 解决编辑新增公用一个页面后，编辑页面的数据依旧存在的bug -->
         <router-view :key="$route.path"></router-view>
-        
       </el-main>
     </el-container>
   </el-container>
@@ -97,7 +98,7 @@ export default {
       address: "上海市普陀区金沙江路 1518 弄"
     };
     return {
-      // 默认打开对应菜单栏目录
+      // 默认打开对应标题的菜单栏
       opents:[1,2,3],
       tableData: Array(20).fill(item)
     };

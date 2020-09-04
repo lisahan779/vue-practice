@@ -10,9 +10,9 @@ const http = axios.create({
 // 请求拦截与响应拦截
 http.interceptors.request.use(function (config) {
   // Do something before request is sent
-  // 服务端校携带token访问浏览器的network中请求的接口内容
+  // 服务端校携带token访问请求的接口内容 
   if (localStorage.token) {
-    config.headers.Authorization = 'Bearer ' + (localStorage.token || "")
+    config.headers.Authorization = 'Bearer ' + localStorage.token
   }
   return config;
 }, function (error) {
@@ -27,7 +27,7 @@ http.interceptors.response.use(res => {
       type: 'error',
       message: err.response.data.message
     })
-    // 服务端 请求接口 出现401，或者token过期(状态500)跳转到登录
+    //服务端返回401（token不存在），或者token过期(状态500)跳转到登录 前端处理跳转到登录页面
     if (err.response.status === 401 || err.response.status === 500 ) {
       router.push('/login')
     }

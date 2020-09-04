@@ -1,4 +1,5 @@
 <template>
+<!-- 封装的导航卡片 -->
   <div class="card bg-white p-3 mt-3">
     <div class="card-header d-flex ai-center" 
     :class="{'border-bottom': !plain, 'pb-3': !plain}">
@@ -9,7 +10,8 @@
       <i class="iconfont icon-menu" v-if="!plain"></i>
     </div>
     <div class="card-body pt-3">
-      <slot></slot>
+      <slot></slot>  
+      <!--  slot 卡片插入数据 -->
     </div>
   </div>
 </template>

@@ -180,6 +180,7 @@ export default {
     };
   },
   methods: {
+    /* eslint-disable */
     async save() {
       let res;
       if (this.id) {

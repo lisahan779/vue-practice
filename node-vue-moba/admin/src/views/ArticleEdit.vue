@@ -57,7 +57,7 @@ export default {
       resetUploader();
     },
     async save() {
-      let res;
+      let res;// eslint-disable-line no-unused-vars
       if (this.id) {
         res = await this.$http.put(`rest/articles/${this.id}`, this.model);
       } else {
@@ -74,8 +74,9 @@ export default {
       this.model = res.data;
     },
     async fetchCatgories() {
+      // 获取分类
       const res = await this.$http.get(`rest/categories`);
-      this.categories = res.data;
+      this.categories = res.data.all;
     }
   },
   created() {

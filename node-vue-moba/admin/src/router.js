@@ -41,7 +41,7 @@ const router = new Router({
         { path: '/items/list', component: ItemList },
 
         { path: '/heroes/create', component: HeroEdit },
-        { path: '/heroes/edit/:id', component: HeroEdit, props: true }, //props: true 当两个路由同时访问一个页面时，允许传值
+        { path: '/heroes/edit/:id', component: HeroEdit, props: true }, //props: true 当两个路由同时访问一个页面时，允许传值，在对应界面使用prop:{id}代替this.route.params
         { path: '/heroes/list', component: HeroList },
 
         { path: '/articles/create', component: ArticleEdit },

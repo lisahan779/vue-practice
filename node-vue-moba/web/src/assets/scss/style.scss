@@ -1,9 +1,9 @@
-@import './variables';
+@import './variables'; //scss用于被包含的以下划线为主，这里只是引用了，不需要把她全部导入style
 
 // reset
 * {
-  box-sizing: border-box;
-  outline: none;
+  box-sizing: border-box;//默认盒模型以内容，加边框就不会出现界面可以拉动的情况
+  outline: none;  //取消高亮
 }
 html {
   font-size: 13px;
@@ -13,7 +13,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.2em;
   background: #f1f1f1;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;  //字体平滑设置
 }
 a {
   color: #999;
@@ -21,7 +21,7 @@ a {
 p {
   line-height: 1.5em;
 }
-
+// css中循环  colors数组来自全局数据
 @each $colorKey, $color in $colors {
   .text-#{$colorKey} {
     color: $color;
@@ -30,7 +30,10 @@ p {
     background-color: $color;
   }
 }
-// text align
+// text align style就会生成三个class 
+// .text-left {
+//   text-align: left;
+// }
 @each $var in (left, center, right) {
   .text-#{$var} {
     text-align: $var !important;
@@ -39,10 +42,10 @@ p {
 
 @each $sizeKey, $size in $font-sizes {
   .fs-#{$sizeKey} {
-    font-size: $size * $base-font-size;
+    font-size: $size * $base-font-size; //生成rem
   }
 }
-// text overflow
+// text overflow 省略号
 .text-ellipsis {
   display: inline-block;
   overflow: hidden;
@@ -57,10 +60,12 @@ p {
 .h-100 {
   height: 100%;
 }
-// flex
+
+// flex 水平
 .d-flex {
   display: flex;
 }
+// 垂直
 .flex-column {
   flex-direction: column;
 }
@@ -73,28 +78,30 @@ p {
     justify-content: $value;
   }
 }
-
+// 水平与交叉轴的
 @each $key, $value in $flex-ai {
   .ai-#{$key} {
     align-items: $value;
   }
 }
+// 左边不动，右边自动填满
 .flex-1 {
   flex: 1;
 }
+// 完整写法，默认拉伸
 .flex-grow-1 {
   flex-grow: 1;
 }
 
 // m-0, mx-0
 @each $typeKey, $type in $spacing-types {
-  // .m-1
+  // .m-1 左右上下都相等
   @each $sizeKey, $size in $spacing-sizes {
     .#{$typeKey}-#{$sizeKey} {
       #{$type}: $size * $spacing-base-size;
     }
   }
-  // .mx-1 , .my-1
+  // .mx-1 , .my-1 左右相等上下相等
   @each $sizeKey, $size in $spacing-sizes {
     .#{$typeKey}x-#{$sizeKey} {
       #{$type}-left: $size * $spacing-base-size;
@@ -105,7 +112,7 @@ p {
       #{$type}-bottom: $size * $spacing-base-size;
     }
   }
-  // .mt-1
+  // .mt-1 margin-top :1rem 左右上下都不相等
   @each $directionKey, $direction in $spacing-directions {
     @each $sizeKey, $size in $spacing-sizes {
       .#{$typeKey}#{$directionKey}-#{$sizeKey} {
@@ -114,10 +121,11 @@ p {
     }
   }
 }
-// button
+// button 按钮
 .btn {
   border:none;
   border-radius: 0.1538rem;
+  // map-get()从之前定义的选择一个
   font-size: map-get($font-sizes, 'sm') * $base-font-size;
   padding: 0.2rem 0.6rem;
   &.btn-lg {
@@ -136,13 +144,14 @@ p {
     font-size: 1rem;
   }
 }
-// nav
+// nav  导航
 .nav {
   display: flex;
   .nav-item {
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
-    &.active {
+    // 点击动态导航栏时加边框 &代表紧跟着的
+    &.active {  
       color: map-get($colors, 'primary');
       border-bottom-color: map-get($colors, 'primary');
     }
@@ -158,7 +167,7 @@ p {
   
 }
 
-// sprite
+// sprite 精灵图
 .sprite {
   background: url(../images/index.png) no-repeat 0 0;
   background-size: 28.8462rem;

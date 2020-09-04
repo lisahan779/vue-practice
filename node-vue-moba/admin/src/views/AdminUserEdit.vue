@@ -18,37 +18,33 @@
 <script>
 export default {
   props: {
-    id: {}
+    id: {},
   },
-  data(){
+  data() {
     return {
       model: {},
-      
-    }
+    };
   },
   methods: {
-    async save(){
-      let res
+    async save() {
       if (this.id) {
-        res = await this.$http.put(`rest/admin_users/${this.id}`, this.model)
+        await this.$http.put(`rest/admin_users/${this.id}`, this.model);
       } else {
-        res = await this.$http.post('rest/admin_users', this.model)
+        await this.$http.post("rest/admin_users", this.model);
       }
-      this.$router.push('/admin_users/list')
+      this.$router.push("/admin_users/list");
       this.$message({
-        type: 'success',
-        message: '保存成功'
-      })
+        type: "success",
+        message: "保存成功",
+      });
     },
-    async fetch(){
-      const res = await this.$http.get(`rest/admin_users/${this.id}`)
-      this.model = res.data
+    async fetch() {
+      const res = await this.$http.get(`rest/admin_users/${this.id}`);
+      this.model = res.data;
     },
-    
-    
   },
-  created(){
-    this.id && this.fetch()
-  }
-}
+  created() {
+    this.id && this.fetch();
+  },
+};
 </script>

@@ -21,6 +21,9 @@ module.exports = app => {
   // 增添数据
   router.post("/", async (req, res) => {
     const model = await req.Model.create(req.body)
+    const name = req.body.name
+    const repeat = await req.Model.findOne({ name })
+    assert(repeat, 200, name + '已存在')
     res.send(model)
   })
   //  获取数据前的token验证及获取数据 
@@ -93,9 +96,9 @@ module.exports = app => {
     assert(token, 401, '1请先登录')
     // 通过token解密的id与数据库中用户做比较，不存在不允许访问
     const { id } = jwt.verify(token, req.app.get('secret'))
-    console.log(333,id )
+    console.log(333, id)
     assert(id, 401, '2请先登录')
-    req.user = await AdminUser.findById({_id:id})
+    req.user = await AdminUser.findById({ _id: id })
     console.log(111, req.user)
     assert(req.user, 401, '3请先登录')
     await next()
@@ -128,7 +131,7 @@ module.exports = app => {
     // file.url = `http://test.topfullstack.com/uploads/${file.filename}`
     res.send(file)
   })
-// token函数
+  // token函数
   function createJWT(id, sub, exp, strTimer) {
     const token = jwt.sign({
       id: id, // 用户id
@@ -148,7 +151,7 @@ module.exports = app => {
     const isValid = require('bcrypt').compareSync(password, user.password)
     assert(isValid, 422, '密码错误')
     // 3.返回token   app.get('secret') 这个来自于index，js 生成token秘钥，验证token是否是有篡改
-    const token = createJWT(user._id, 'login', 0.5, 'h');
+    const token = createJWT(user._id, 'login', 24, 'h');
     // const token = jwt.sign({ id: user._id }, app.get('secret'),{
     //   expiresIn: '0.001h' // 过期时间
     // })

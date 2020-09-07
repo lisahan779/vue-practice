@@ -23,10 +23,12 @@ http.interceptors.response.use(res => {
   return res
 }, err => {
   if (err.response.data.message) {
+
     Vue.prototype.$message({
       type: 'error',
       message: err.response.data.message
     })
+
     //服务端返回401（token不存在），或者token过期(状态500)跳转到登录 前端处理跳转到登录页面
     if (err.response.status === 401 || err.response.status === 500 ) {
       router.push('/login')

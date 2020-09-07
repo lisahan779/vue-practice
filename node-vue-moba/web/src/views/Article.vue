@@ -1,10 +1,13 @@
 <template>
+<!-- v-if="model"没有的时候不渲染 -->
   <div class="page-article" v-if="model">
     <div class="d-flex py-3 px-2 border-bottom">
-      <div class="iconfont icon-Back text-blue"></div>
+      <div class="iconfont icon-Back text-blue"  @click="$router.back(-1)">
+      </div>
       <strong class="flex-1 text-blue pl-2">{{model.title}}</strong>
-      <div class="text-grey fs-xs">2019-06-19</div>
+      <div class="text-grey fs-xs">2020-06-19</div>
     </div>
+    <!-- 相关资讯部 -->
     <div v-html="model.body" class="px-3 body fs-lg"></div>
     <div class="px-3 border-top py-3">
       <div class="d-flex ai-center">
@@ -36,6 +39,7 @@ export default {
   },
   watch: {
     id: 'fetch',
+    // 简写
     // id(){
     //   this.fetch()
     // }

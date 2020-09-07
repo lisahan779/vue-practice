@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       items: [],
-      pageSizes: 3, //每页展示数据
+      pageSizes: 8, //每页展示数据
       totalCount: 30, //总数
       currentPage3: 1, //默认显示第几页
     };

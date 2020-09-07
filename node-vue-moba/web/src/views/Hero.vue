@@ -12,6 +12,8 @@
       <div class="info text-white p-3 h-100 d-flex flex-column jc-end">
         <div class="fs-sm">{{model.title}}</div>
         <h2 class="my-2">{{model.name}}</h2>
+        <!-- 前端显示数组对象 -->
+        <!-- {{model.categories.map(v => v.name).join('/')} 数组中的两个值使用/连接 -->
         <div class="fs-sm">{{model.categories.map(v => v.name).join('/')}}</div>
         <div class="d-flex jc-between pt-2">
           <div class="scores d-flex ai-center" v-if="model.scores">
@@ -146,7 +148,7 @@ export default {
   },
   methods: {
     async fetch() {
-      // const res = await this.$http.get(`heroes/${this.id}`);
+      const res = await this.$http.get(`heroes/${this.id}`);
       this.model = res.data;
     }
   },

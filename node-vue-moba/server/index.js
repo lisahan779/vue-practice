@@ -7,7 +7,7 @@ app.set('secret', 'i2u34y12oi3u4y8')   //token秘钥
 
 app.use(require('cors')()) //跨域
 app.use(express.json()) // 使用async await 的时候加
-app.use('/', express.static(__dirname + '/web'))
+app.use('/', express.static(__dirname + '/web'))  //web前端文件静态托管到"/"上去
 app.use('/admin', express.static(__dirname + '/admin'))
 app.use('/uploads', express.static(__dirname + '/uploads')) // 托管静态文件
 // 类似于脚手架中的这种写法

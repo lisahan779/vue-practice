@@ -3,8 +3,8 @@ import Vue from 'vue'
 import router from './router'
 // axios封装
 const http = axios.create({
-  // baseURL: process.env.VUE_APP_API_URL || '/admin/api',
-  baseURL: 'http://localhost:3000/admin/api',
+  baseURL: process.env.VUE_APP_API_URL || '/admin/api',  // daobai 生产环境  process.env环境变量 VUE_APP_API_URL真正的接口地址
+  // baseURL: 'http://localhost:3000/admin/api',  //开发环境
   timeout: 10000,
 })
 // 请求拦截与响应拦截
